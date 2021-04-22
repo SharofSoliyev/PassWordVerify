@@ -58,7 +58,7 @@ namespace PassWordVerify
             }
 
             BigInteger a = BigInteger.Pow(score, daraja);
-            BigInteger p = a / 1000000;
+            BigInteger p = a / 100000000;
             BigInteger big = p / 31536000;
             if (big == 0)
             {
