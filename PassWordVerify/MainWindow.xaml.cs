@@ -28,67 +28,77 @@ namespace PassWordVerify
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            string t = txtbx.Text;
-            string uppercase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-            string lowercase = "abcdefghijklmnopqrstuvwxyz";
-            string digits = "0123456789";
-            string specialChars = "#?!,-'/`_*$";
-            string password = t;
-            int score = 0;
-            int daraja = t.Length;
-
-            if (Contains(password, uppercase))
+            try
             {
-                score += 26; 
-            }
+                string t = txtbx.Text;
+                int par;
+                if (parallel.Text != "") par = int.Parse(parallel.Text);
+                else par = 1;
+                string uppercase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+                string lowercase = "abcdefghijklmnopqrstuvwxyz";
+                string digits = "0123456789";
+                string specialChars = "#?!,-'/`_*$";
+                string password = t;
+                int score = 0;
+                int daraja = t.Length;
 
-            if (Contains(password, lowercase))
-            {
-                score += 26;
-            }
+                if (Contains(password, uppercase))
+                {
+                    score += 26;
+                }
 
-            if (Contains(password, digits))
-            {
-                score += 10;
-            }
+                if (Contains(password, lowercase))
+                {
+                    score += 26;
+                }
 
-            if (Contains(password, specialChars))
-            {
-                score += 12;
-            }
+                if (Contains(password, digits))
+                {
+                    score += 10;
+                }
 
-            BigInteger a = BigInteger.Pow(score, daraja);
-            BigInteger p = a / 100000000;
-            BigInteger big = p / 31536000;
-            if (big == 0)
-            {
-                big = p / 86400;
+                if (Contains(password, specialChars))
+                {
+                    score += 12;
+                }
+
+                BigInteger a = BigInteger.Pow(score, daraja);
+                BigInteger p = a / (100000000 * par);
+                BigInteger big = p / 31536000;
                 if (big == 0)
                 {
-                    big = p / 3600;
+                    big = p / 86400;
                     if (big == 0)
                     {
-                        big = p / 60;
+                        big = p / 3600;
                         if (big == 0)
                         {
-                            big = p ;
+                            big = p / 60;
+                            if (big == 0)
+                            {
+                                big = p;
 
-                            natija.Content = big.ToString() + " sekundda buza oladi !";
+                                natija.Content = big.ToString() + " sekundda buza oladi !";
+
+                            }
+                            else
+                                natija.Content = big.ToString() + " minutda buza oladi !";
 
                         }
                         else
-                            natija.Content = big.ToString() + " minutda buza oladi !";
-
+                            natija.Content = big.ToString() + " soatda buza oladi !";
                     }
                     else
-                        natija.Content = big.ToString() + " soatda buza oladi !";
+                        natija.Content = big.ToString() + " kunda buza oladi !";
                 }
                 else
-                    natija.Content = big.ToString() + " kunda buza oladi !";
-            }
-           else
-            natija.Content = big.ToString() + " yilda buza oladi !";
+                    natija.Content = big.ToString() + " yilda buza oladi !";
 
+            }
+        catch(Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
 
         }
         public static bool Contains(string target, string list)
