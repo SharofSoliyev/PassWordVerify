@@ -5,11 +5,17 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PassWordVerify"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="Parol tekshirish" Height="450" Width="800">
     <Grid>
-        <TextBox x:Name="txtbx" HorizontalAlignment="Left" Height="30" Margin="303,118,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="199"/>
-        <Button Content="Tekshirish" HorizontalAlignment="Left" Margin="369,165,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click"/>
-        <Label  x:Name="natija" HorizontalAlignment="Left" Margin="152,265,0,0" VerticalAlignment="Top" Width="619"/>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="63*"/>
+            <ColumnDefinition Width="10*"/>
+            <ColumnDefinition Width="719*"/>
+        </Grid.ColumnDefinitions>
+        <TextBox x:Name="txtbx" HorizontalAlignment="Left" Height="30" Margin="232.125,156,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="199" Grid.Column="2"/>
+        <Button Content="Tekshirish" HorizontalAlignment="Left" Margin="287.125,207,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click" Grid.Column="2"/>
+        <Label  x:Name="natija" HorizontalAlignment="Left" Margin="79.125,265,0,0" VerticalAlignment="Top" Width="619" Grid.Column="2"/>
+        <Label Content="Parol : " HorizontalAlignment="Left" Margin="175.125,157,0,0" VerticalAlignment="Top" Grid.Column="2"/>
 
     </Grid>
 </Window>

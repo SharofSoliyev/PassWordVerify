@@ -60,7 +60,34 @@ namespace PassWordVerify
             BigInteger a = BigInteger.Pow(score, daraja);
             BigInteger p = a / 1000000;
             BigInteger big = p / 31536000;
-            natija.Content = big.ToString() + " Yilda buza oladi !";
+            if (big == 0)
+            {
+                big = p / 86400;
+                if (big == 0)
+                {
+                    big = p / 3600;
+                    if (big == 0)
+                    {
+                        big = p / 60;
+                        if (big == 0)
+                        {
+                            big = p ;
+
+                            natija.Content = big.ToString() + " sekundda buza oladi !";
+
+                        }
+                        else
+                            natija.Content = big.ToString() + " minutda buza oladi !";
+
+                    }
+                    else
+                        natija.Content = big.ToString() + " soatda buza oladi !";
+                }
+                else
+                    natija.Content = big.ToString() + " kunda buza oladi !";
+            }
+           else
+            natija.Content = big.ToString() + " yilda buza oladi !";
 
 
         }
